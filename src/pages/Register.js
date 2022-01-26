@@ -40,7 +40,7 @@ const Register = () => {
             name='name'
             value={values.name}
             handleChange={handleChange}
-            placeholder='Enter your name'
+            placeholder='Enter your name...'
           />
         )}
 
@@ -49,14 +49,14 @@ const Register = () => {
           name='email'
           value={values.email}
           handleChange={handleChange}
-          placeholder='Enter your email'
+          placeholder='Enter your email...'
         />
         <FormRow
           type='password'
           name='password'
           value={values.password}
           handleChange={handleChange}
-          placeholder='Enter your password'
+          placeholder='Enter your password...'
         />
         <button type='submit' className='btn btn-block'>
           Submit
