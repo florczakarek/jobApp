@@ -5,7 +5,7 @@ import dotenv from 'dotenv';
 import connectDB from './db/connect.js';
 import authRouter from './routes/authRoutes.js';
 import jobsRouter from './routes/jobsRouter.js';
-
+import 'express-async-errors';
 dotenv.config();
 
 //
@@ -24,6 +24,7 @@ app.use('/api/v1/jobs', jobsRouter);
 
 app.use(notFoundMiddleware);
 app.use(errorHandlerMiddleware);
+
 const port = process.env.PORT || 5000;
 
 const start = async () => {
