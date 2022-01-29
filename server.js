@@ -1,15 +1,16 @@
 import express from 'express';
-import errorHandlerMiddleware from './middleware/error-handler.js';
-import notFoundMiddleware from './middleware/not-found.js';
+
 import dotenv from 'dotenv';
+dotenv.config();
 import connectDB from './db/connect.js';
+import 'express-async-errors';
 import authRouter from './routes/authRoutes.js';
 import jobsRouter from './routes/jobsRouter.js';
-import 'express-async-errors';
-dotenv.config();
+import errorHandlerMiddleware from './middleware/error-handler.js';
+import notFoundMiddleware from './middleware/not-found.js';
 
-//
 const app = express();
+//
 //dostep do controolers post method - wysyłanie jsona
 app.use(express.json());
 //middlewares
