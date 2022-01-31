@@ -15,7 +15,18 @@ const register = async (req, res, next) => {
     throw new BadRequestError('Email already exits. Try another one');
   }
   const user = await User.create({ name, email, password });
-  res.status(StatusCodes.CREATED).json({ user });
+  //instancja metody z USerSchema - nie trzeba dodatkowo importowac
+  const token = user.createJWT();
+  res.status(StatusCodes.CREATED).json({
+    user: {
+      email: user.email,
+      name: user.name,
+      lastName: user.lastName,
+      location: user.location,
+    },
+    token,
+    location: user.location,
+  });
 
   // //tutaj przyjmujemy blad z error-handler poprzez wywołanie next() middleware
   // next(error);

@@ -1,5 +1,4 @@
 import express from 'express';
-
 import dotenv from 'dotenv';
 dotenv.config();
 import connectDB from './db/connect.js';
@@ -12,12 +11,17 @@ import notFoundMiddleware from './middleware/not-found.js';
 const app = express();
 //
 //dostep do controolers post method - wysyłanie jsona
+// app.use(cors()); - nie musimy go uzywac bo mamy proxy
 app.use(express.json());
 //middlewares
 
 app.get('/', (req, res) => {
   // throw new Error('error');
-  res.send('Welcome to jobify');
+  res.json({ msg: 'Heeeelo!!!' });
+});
+
+app.get('/api/v1', (req, res) => {
+  res.json({ msg: 'Welcome to jobify with proxy' });
 });
 
 app.use('/api/v1/auth', authRouter);
