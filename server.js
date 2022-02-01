@@ -3,6 +3,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 import connectDB from './db/connect.js';
 import 'express-async-errors';
+import morgan from 'morgan';
 import authRouter from './routes/authRoutes.js';
 import jobsRouter from './routes/jobsRouter.js';
 import errorHandlerMiddleware from './middleware/error-handler.js';
@@ -12,6 +13,9 @@ const app = express();
 //
 //dostep do controolers post method - wysyłanie jsona
 // app.use(cors()); - nie musimy go uzywac bo mamy proxy
+if (process.env.NODE_ENV !== 'production') {
+  app.use(morgan('dev'));
+}
 app.use(express.json());
 //middlewares
 
