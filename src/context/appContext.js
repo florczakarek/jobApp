@@ -8,6 +8,8 @@ import {
   LOGIN_USER_BEGIN,
   LOGIN_USER_SUCCESS,
   LOGIN_USER_ERROR,
+  TOGGLE_SIDEBAR,
+  LOGOUT_USER,
 } from './actions';
 import reducer from './reducer';
 import axios from 'axios';
@@ -25,6 +27,7 @@ const initialState = {
   token: token,
   userLocation: userLocation || '',
   jobLocation: userLocation || '',
+  showSidebar: false,
 };
 
 const AppContext = React.createContext();
@@ -43,6 +46,9 @@ const AppProvider = ({ children }) => {
     }, 3000);
   };
 
+  const toggleSidebar = () => {
+    dispatch({ type: TOGGLE_SIDEBAR });
+  };
   //LOCAL STORAGE
 
   const addUserToLocalStorage = ({ user, token, location }) => {
@@ -108,9 +114,22 @@ const AppProvider = ({ children }) => {
     clearAlert();
   };
 
+  const logoutUser = () => {
+    dispatch({ type: LOGOUT_USER });
+    removeUserFromLocalStorage();
+  };
+
   return (
     <AppContext.Provider
-      value={{ ...state, displayAlert, clearAlert, registerUser, loginUser }}
+      value={{
+        ...state,
+        displayAlert,
+        clearAlert,
+        registerUser,
+        loginUser,
+        toggleSidebar,
+        logoutUser,
+      }}
     >
       {children}
     </AppContext.Provider>

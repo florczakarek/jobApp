@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 const Wrapper = styled.aside`
   @media (min-width: 992px) {
@@ -67,10 +67,10 @@ const Wrapper = styled.aside`
     transition: var(--transition);
   }
   .active {
-    color: var(--grey-900);
+    color: var(--primary-500);
   }
   .active .icon {
     color: var(--primary-500);
   }
-`
-export default Wrapper
+`;
+export default Wrapper;
